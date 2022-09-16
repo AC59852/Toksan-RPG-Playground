@@ -4,15 +4,18 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </nav>
-    <InventoryComponent />
+    <InventoryComponent :user="this.user.playerInventory" />
     <router-view/>
   </div>
 </template>
 <script>
   import InventoryComponent from './components/InventoryComponent.vue';
+  import userMixin from './mixins/userMixin';
 
   export default {
     name: 'ToksanRPG',
+
+    mixins: [userMixin],
 
     data() {
       return {
@@ -20,7 +23,7 @@
     },
 
     mounted() {
-      console.log(process.env.VUE_APP_TEST)
+      console.log(this.user)
     },
 
     components: {

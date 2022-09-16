@@ -9,12 +9,11 @@
 
 <script>
 import { db } from '@/db'
-import userMixin from '@/mixins/userMixin';
 
 export default {
   name: 'InventoryComponent',
 
-  mixins: [userMixin],
+  props: ['user'],
 
   data() {
     return {
@@ -29,7 +28,7 @@ export default {
   watch: {
     user() {
       // set the inventory
-      this.playerInventory = this.user.playerInventory
+      this.playerInventory = this.user
 
       // query the items collection
       db.collection('items')

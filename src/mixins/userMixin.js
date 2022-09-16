@@ -21,7 +21,12 @@ export default {
 
             // get the user id
             this.user.id = doc.id;
+
+            console.log(this.user)
             
+          } else {
+            console.log('No user');
+            return;
           }
         })
         .catch((error) => {
