@@ -22,6 +22,9 @@ export default {
             // get the user id
             this.user.id = doc.id;
 
+            // store the user in vuex
+            this.$store.commit('setUser', this.user);
+
             console.log(this.user)
             
           } else {
@@ -33,13 +36,5 @@ export default {
           console.log('Error getting document:', error);
         });
     },
-
-    checkUser() {
-      if (this.user) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-  },
+  }
 }
