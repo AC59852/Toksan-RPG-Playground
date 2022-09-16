@@ -16,11 +16,11 @@
 
     data() {
       return {
-        user: {}
       }
     },
 
     mounted() {
+      console.log(process.env.VUE_APP_TEST)
     },
 
     components: {
