@@ -25,8 +25,6 @@ export default {
     .then(querySnapshot => {
       const documents = querySnapshot.docs.map(doc => doc.data())
       this.ModernDistrict = documents[0]
-
-      console.log(this.ModernDistrict)
     })
   },
 
