@@ -3,6 +3,7 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import { firestorePlugin } from 'vuefire'
+import store from './store'
 
 Vue.use(firestorePlugin)
 
@@ -10,5 +11,6 @@ Vue.config.productionTip = false
 
 new Vue({
   router,
+  store,
   render: function (h) { return h(App) }
 }).$mount('#app')

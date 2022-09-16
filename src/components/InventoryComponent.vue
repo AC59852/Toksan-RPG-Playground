@@ -9,12 +9,11 @@
 
 <script>
 import { db } from '@/db'
-import userMixin from '@/mixins/userMixin';
 
 export default {
   name: 'InventoryComponent',
 
-  mixins: [userMixin],
+  props: ['user'],
 
   data() {
     return {
@@ -29,7 +28,7 @@ export default {
   watch: {
     user() {
       // set the inventory
-      this.playerInventory = this.user.playerInventory
+      this.playerInventory = this.user
 
       // query the items collection
       db.collection('items')
@@ -39,11 +38,17 @@ export default {
 
         // loop through the inventory
         this.playerInventory.forEach(item => {
-          // find the item in the items collection
-          const foundItem = items.find(i => i.id === item.id)
+
+          // find the item in the items collection based on the string provided
+          const foundItem = items.find(i => i.itemID === item)
 
           // add the item to the inventory array
           this.inventory.push(foundItem)
+
+          // update the vuex inventory state
+          this.$store.commit('updateInventory', this.inventory)
+
+          console.log(this.$store.state.inventory)
         })
       })
     }
