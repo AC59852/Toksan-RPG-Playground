@@ -2,8 +2,8 @@
   <section id="modernIntro">
     <div class="textbox" @click="loadNextContent()">
       <div class="name">
-        <h2 v-if="sortedStory[0].character">{{ story[0].character.name }}</h2>
-        <p>{{sortedStory[0].data.text}}</p>
+        <h2 v-if="story[0].character">{{ story[0].character.name }}</h2>
+        <p>{{story[0].data.text}}</p>
       </div>
     </div>
   </section>
@@ -18,7 +18,6 @@
     data() {
       return {
         content: [],
-        currentCharacter: null
       }
     },
 
@@ -35,10 +34,8 @@
     methods: {
       loadNextContent() {
         // if there is content to load, shift
-        if(this.sortedStory.length > 1) {
-
-          this.sortedStory.shift();
-
+        if(this.story.length > 1) {
+          this.story.shift();
         } else {
           console.log("all out")
         }

@@ -2,7 +2,8 @@
   <div id="app">
     <nav>
       <router-link to="/">Home</router-link> |
-      <router-link to="/shop">Shop</router-link>
+      <router-link to="/shop">Shop</router-link> |
+      <router-link to="/ModernDistrict/intro">Intro</router-link>
     </nav>
     <InventoryComponent :user="this.user.playerInventory" />
     <router-view/>
