@@ -8,6 +8,7 @@ export default {
       route: "",
       log: [],
       story: [],
+      characters: [],
     }
   },
   methods: {
@@ -39,49 +40,46 @@ export default {
           })
       },
 
-      getStoryComponents(component) {
+      async getStoryComponents(component) {
         let lowerCaseZone = this.zone.toLowerCase();
+        console.log(component)
 
-        // get the content from collection conversations, doc lowerCaseZone, collection this.area where the doc.id is in the log array
-        db.collection(component).doc(lowerCaseZone).collection(this.area).get()
+        // get the characters and store them
+        if(component === 'conversations') {
+        db.collection('characters').where('zone', '==', lowerCaseZone).get()
+          .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              this.characters.push({
+                id: doc.id,
+                ...doc.data()
+              });
+            });
+          })
+        }
+
+       // get the content from collection conversations, doc lowerCaseZone, collection this.area where the doc.id is in the log array
+        await db.collection(component).doc(lowerCaseZone).collection(this.area).get()
           .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
               if (this.log.includes(doc.id)) {
-
                 if (doc.data().characterID) {
-                  db.collection('characters').doc(doc.data().characterID).get()
-                    .then((characterDoc) => {
-                      if (characterDoc.exists) {
-                        this.story.push({
-                          id: doc.id,
-                          character: characterDoc.data(),
-                          data: doc.data()
-                        });
-                      }
-                    })
+                  let character = this.characters.find((character) => character.id === doc.data().characterID);
+                  this.story.push({
+                    id: doc.id,
+                    character: character,
+                    data: doc.data()
+                  })
                 } else {
                   this.story.push({id: doc.id, data: doc.data()});
                 }
-
-                console.log(this.story)
               }
             });
           })
+
+          // sort the array based on the log array
+          this.story.sort((a, b) => {
+            return this.log.indexOf(a.id) - this.log.indexOf(b.id);
+          })
       },
-  },
-
-  computed: {
-    // sort the story array based on the log
-    sortedStory() {
-      return this.story.sort((a, b) => {
-        return this.log.indexOf(a.id) - this.log.indexOf(b.id);
-      })
-    }
-  },
-
-  watch: {
-    sortedStory() {
-      console.log('sorting');
-    }
   }
 }
