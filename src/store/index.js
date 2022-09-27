@@ -7,7 +7,8 @@ export default new Vuex.Store({
   state: {
     user: {},
     inventory: [],
-    currentStory: {}
+    currentStory: {},
+    items: [],
   },
   getters: {
   },
@@ -20,12 +21,20 @@ export default new Vuex.Store({
       state.inventory = inventory;
     },
 
+    setItems(state, items) {
+      state.items = items;
+    },
+
     updateInventory(state, inventory) {
       state.inventory = inventory;
     },
 
     addToInventory(state, item) {
       state.inventory.push(item);
+    },
+
+    subtractCurrency(state, amount) {
+      state.user.playerCurrency -= amount;
     }
   },
   actions: {
