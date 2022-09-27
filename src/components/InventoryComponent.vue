@@ -8,7 +8,6 @@
 </template>
 
 <script>
-import { db } from '@/db'
 
 export default {
   name: 'InventoryComponent',
@@ -26,32 +25,7 @@ export default {
   },
 
   watch: {
-    user() {
-      // set the inventory
-      this.playerInventory = this.user
-
-      // query the items collection
-      db.collection('items')
-      .get()
-      .then(querySnapshot => {
-        const items = querySnapshot.docs.map(doc => doc.data())
-
-        // loop through the inventory
-        this.playerInventory.forEach(item => {
-
-          // find the item in the items collection based on the string provided
-          const foundItem = items.find(i => i.itemID === item)
-
-          // add the item to the inventory array
-          this.inventory.push(foundItem)
-
-          // update the vuex inventory state
-          this.$store.commit('updateInventory', this.inventory)
-
-          console.log(this.$store.state.inventory)
-        })
-      })
-    }
+    
   },
 
   methods: {

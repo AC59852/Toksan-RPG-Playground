@@ -1,6 +1,6 @@
 <template>
   <section id="modernIntro">
-    <div class="textbox" @click="loadNextContent()">
+    <div class="textbox" @click="loadNextContent(), loadEvent()"> 
       <div class="name">
         <h2 v-if="story[0].character">{{ story[0].character.name }}</h2>
         <p>{{story[0].data.text}}</p>
@@ -11,9 +11,10 @@
 
 <script>
   import storyMixin from '@/mixins/storyMixin';
+  import eventMixin from '@/mixins/eventMixin';
   
   export default {
-    mixins: [storyMixin],
+    mixins: [storyMixin, eventMixin],
 
     data() {
       return {

@@ -45,17 +45,17 @@ export default {
         console.log(component)
 
         // get the characters and store them
-        if(component === 'conversations') {
-        db.collection('characters').where('zone', '==', lowerCaseZone).get()
-          .then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-              this.characters.push({
-                id: doc.id,
-                ...doc.data()
-              });
-            });
-          })
-        }
+        // if(component === 'conversations') {
+        // db.collection('characters').where('zone', '==', lowerCaseZone).get()
+        //   .then((querySnapshot) => {
+        //     querySnapshot.forEach((doc) => {
+        //       this.characters.push({
+        //         id: doc.id,
+        //         ...doc.data()
+        //       });
+        //     });
+        //   })
+        // }
 
        // get the content from collection conversations, doc lowerCaseZone, collection this.area where the doc.id is in the log array
         await db.collection(component).doc(lowerCaseZone).collection(this.area).get()

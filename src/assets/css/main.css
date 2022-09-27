@@ -1,0 +1,13 @@
+.reveal-character {
+  animation: testAnim 1s linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes testAnim {
+  0% {
+    background: transparent;
+  }
+  100% {
+    background: blue;
+  }
+}
