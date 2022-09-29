@@ -1,17 +1,20 @@
 <template>
-  <section id="modernIntro">
-    <div class="textbox" @click="loadNextContent(), loadEvent()"> 
-      <div class="name">
-        <h2 v-if="story[0].character">{{ story[0].character.name }}</h2>
-        <p>{{story[0].data.text}}</p>
-      </div>
+  <section id="modernIntro story">
+    <div class="story__characters">
+      <img v-for="(character, index) in characters" :src="character.image" :key="character.id" :class="`character${index + 1}`">
     </div>
+    <TextComponent 
+      :character="story[0].character" 
+      :text="story[0].data.text" 
+      @storyUpdate="loadNextContent(), loadEvent()" 
+    />
   </section>
 </template>
 
 <script>
   import storyMixin from '@/mixins/storyMixin';
   import eventMixin from '@/mixins/eventMixin';
+  import TextComponent from '@/components/TextComponent.vue';
   
   export default {
     mixins: [storyMixin, eventMixin],
@@ -27,11 +30,7 @@
 
       this.getStoryContent();
     },
-
-    mounted() {
-      console.log(this.log)
-    },
-
+    
     methods: {
       loadNextContent() {
         // if there is content to load, shift
@@ -40,7 +39,15 @@
         } else {
           console.log("all out")
         }
+      },
+
+      test() {
+        console.log("this worked")
       }
+    },
+
+    components: {
+      TextComponent: TextComponent
     }
   }
 </script>

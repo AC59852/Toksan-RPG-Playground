@@ -25,7 +25,7 @@ export default {
       console.log("test")
       // set the inventory
       this.playerInventory = this.user
-      // query the items collection
+      // query the items collection only once
       db.collection('items')
       .get()
       .then(querySnapshot => {

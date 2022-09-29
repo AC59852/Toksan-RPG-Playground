@@ -11,6 +11,7 @@ export default {
       characters: [],
     }
   },
+
   methods: {
     // get the page route
     getRoute() {
@@ -23,12 +24,14 @@ export default {
       this.area = this.route.split("/")[2];
     },
 
-    getStoryContent() {
+    async getStoryContent() {
         // get the story content
       db.collection(this.zone).doc(this.area).get()
           .then((doc) => {
             if (doc.exists) {
               this.log = doc.data().log;
+
+              document.body.style.backgroundImage = `url(${doc.data().background})`;
 
               this.getStoryComponents('conversations');
               this.getStoryComponents('events');
@@ -45,17 +48,17 @@ export default {
         console.log(component)
 
         // get the characters and store them
-        // if(component === 'conversations') {
-        // db.collection('characters').where('zone', '==', lowerCaseZone).get()
-        //   .then((querySnapshot) => {
-        //     querySnapshot.forEach((doc) => {
-        //       this.characters.push({
-        //         id: doc.id,
-        //         ...doc.data()
-        //       });
-        //     });
-        //   })
-        // }
+        if(component === 'conversations') {
+          db.collection('characters').where('zone', '==', lowerCaseZone).get()
+            .then((querySnapshot) => {
+              querySnapshot.forEach((doc) => {
+                this.characters.push({
+                  id: doc.id,
+                  ...doc.data()
+                });
+              });
+            })
+        }
 
        // get the content from collection conversations, doc lowerCaseZone, collection this.area where the doc.id is in the log array
         await db.collection(component).doc(lowerCaseZone).collection(this.area).get()
