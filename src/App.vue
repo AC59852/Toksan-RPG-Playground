@@ -42,7 +42,7 @@
     watch: {
       user() {
         console.log(this.$store.state.user)
-      }
+      },
     },
 
     components: {
