@@ -31,6 +31,7 @@ export default new Vuex.Store({
 
     addToInventory(state, item) {
       state.inventory.push(item);
+      state.user.playerInventory.push(item.itemID);
     },
 
     subtractCurrency(state, amount) {

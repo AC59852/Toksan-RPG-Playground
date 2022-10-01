@@ -24,8 +24,6 @@ export default {
 
             // store the user in vuex
             this.$store.commit('setUser', this.user);
-
-            console.log(this.user)
             
           } else {
             console.log('No user');
