@@ -1,11 +1,19 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/shop">Shop</router-link> |
-      <router-link to="/ModernDistrict/intro">Intro</router-link>
-    </nav>
-    <InventoryComponent :user="this.user.playerInventory" />
+    <header>
+      <nav>
+        <router-link to="/">Home</router-link> |
+        <router-link to="/shop">Shop</router-link> |
+        <router-link to="/ModernDistrict/intro">Intro</router-link> |
+        <span @click="toggleInventory()">Open Inventory</span>
+      </nav>
+      <transition name="fade">
+        <InventoryComponent v-if="inventoryOpened"
+        :user="updatedInventory"
+        @closeInv="toggleInventory()"
+        />
+      </transition>
+    </header>
     <router-view/>
   </div>
 </template>
@@ -21,6 +29,7 @@
 
     data() {
       return {
+        inventoryOpened: false,
       }
     },
 
@@ -29,7 +38,10 @@
     db.collection('items')
     .get()
     .then(querySnapshot => {
-      const items = querySnapshot.docs.map(doc => doc.data())
+      // get the items from the query snapshot and give them an ID
+      const items = querySnapshot.docs.map(doc => ({ ...doc.data(), itemID: doc.id }))
+
+      console.log(items)
 
       // set the items array
       this.$store.commit('setItems', items)
@@ -43,6 +55,19 @@
       user() {
         console.log(this.$store.state.user)
       },
+    },
+
+    computed: {
+      updatedInventory() {
+        return this.$store.state.user.playerInventory
+      },
+    },
+
+    methods: {
+      toggleInventory() {
+        console.log('test')
+        this.inventoryOpened = !this.inventoryOpened;
+      }
     },
 
     components: {

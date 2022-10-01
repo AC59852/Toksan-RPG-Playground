@@ -13,7 +13,7 @@
 export default {
   computed: {
     items() {
-      return this.$store.state.items
+      return this.$store.state.items.filter(item => item.shopItem === true)
     },
   },
 
