@@ -19,6 +19,30 @@ Vue.use(firestorePlugin)
 
 Vue.config.productionTip = false
 
+// delay going between routes by 3 seconds ONLY WHEN LEAVING ROUTE
+router.beforeEach((to, from, next) => {
+  if (from.name) {
+    document.querySelector(".overlay-black").classList.add("overlay-active")
+    setTimeout(() => {
+      document.querySelector("body").style.backgroundImage = "none"
+      next()
+    }, 1600)
+  } else {
+    next()
+  }
+})
+
+// check when the route loads
+router.afterEach((from) => {
+  if (from.name) {
+    setTimeout(() => {
+      // remove background-image from body
+      document.querySelector(".overlay-black").classList.remove("overlay-active")
+    }, 1000)
+  }
+})
+
+
 new Vue({
   router,
   store,

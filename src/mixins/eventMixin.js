@@ -27,6 +27,11 @@ export default {
           document.querySelector(`.${item.data.revealedChar}`).classList.add("reveal-character");
           this.story.shift();
           break;
+        case 'hide-character':
+          document.querySelector(`.${item.data.hiddenChar}`).classList.remove("reveal-character");
+          document.querySelector(`.${item.data.hiddenChar}`).classList.add("hide-character");
+          this.story.shift();
+          break;
         default:
           console.log('no event name');
           break;
