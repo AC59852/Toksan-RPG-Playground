@@ -4,6 +4,23 @@ body {
   transition: all 0.5s ease;
 }
 
+#app {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+img {
+  -khtml-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
 nav {
   position: relative;
   z-index: 100;
@@ -18,7 +35,7 @@ nav {
 }
 
 .overlay-black {
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(20, 20, 20, 0);
   opacity: 0;
   position: absolute;
   top: 0;
@@ -27,12 +44,22 @@ nav {
   height: 100vh;
   transition: all 1.4s linear;
   z-index: -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay-black h1 {
+  font-family: var(--font);
+  font-weight: bold;
+  font-size: 60px;
+  text-transform: capitalize;
 }
 
 .overlay-active {
   opacity: 1 !important;
-  z-index: 9 !important;
-  background-color: rgba(0, 0, 0, 1) !important;
+  z-index: 9999 !important;
+  background-color: rgb(20, 20, 20) !important;
 }
 
 /* Start of Variables */
@@ -267,6 +294,91 @@ nav {
 }
 
 /* End of Splashscreen */
+
+/* Start of Account */
+
+.form__wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  max-width: 1200px;
+  height: 65%;
+  background-color: var(--ui-box-bg);
+  border-radius: var(--border-big);
+  box-shadow: var(--shadow);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 50px;
+  align-items: center;
+  font-family: var(--font);
+  color: white;
+}
+
+.form h1 {
+  font-weight: bold;
+  font-size: 36px;
+}
+
+.form__wrapper h2 {
+  color: white;
+  font-family: var(--font);
+  text-align: center;
+  font-weight: bold;
+  font-size: 26px;
+  padding: 45px 0 0;
+}
+
+.form__input {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+
+.form__input label {
+  font-weight: bold;
+  font-size: 28px;
+  letter-spacing: 0.3px;
+  margin-bottom: 10px;
+}
+
+.form__input input {
+  padding: 3%;
+  box-sizing: border-box;
+  border: none;
+  border-radius: var(--border-small);
+  background-color: rgb(44, 50, 73, 0.9);
+  font-size: 20px;
+  color: white;
+}
+
+.form__input input::placeholder {
+  color: white;
+  opacity: 0.5;
+}
+
+.form button {
+  width: 15%;
+  height: 60px;
+  border: none;
+  border-radius: var(--border-small);
+  background-color: rgb(44, 50, 73, 0.9);
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+
+/* End of Account */
 
 /* Start of Characters */
 

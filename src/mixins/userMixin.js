@@ -7,32 +7,35 @@ export default {
     };
   },
 
-  created() {
-    this.getUser();
-  },
-
   methods: {
     getUser() {
-      db.collection('users').doc('diF5GgGneuVuUHS2O39q').get()
-        .then((doc) => {
-          if (doc.exists) {
+      if (this.$store.state.userID) {
+        db.collection('users').doc(this.$store.state.userID).get()
+          .then((doc) => {
+            if (doc.exists) {
 
-            this.user = doc.data();
+              this.user = doc.data();
 
-            // get the user id
-            this.user.id = doc.id;
+              // get the user id
+              this.user.id = doc.id;
 
-            // store the user in vuex
-            this.$store.commit('setUser', this.user);
-            
-          } else {
-            console.log('No user');
-            return;
-          }
-        })
-        .catch((error) => {
-          console.log('Error getting document:', error);
-        });
+              // dont store the password
+              delete this.user.password;
+
+              // store the user in vuex
+              this.$store.commit('setUser', this.user);
+              
+            } else {
+              console.log(`couldn't find user`);
+              return;
+            }
+          })
+          .catch((error) => {
+            console.log('Error getting document:', error);
+          });
+      } else {
+        console.log('No user signed in');
+      }
     },
   }
 }

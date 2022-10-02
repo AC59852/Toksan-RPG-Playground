@@ -6,15 +6,26 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: {},
+    userID: null,
     inventory: [],
     currentStory: {},
     items: [],
+    loadingMessage: null,
   },
   getters: {
   },
   mutations: {
     setUser(state, user) {
       state.user = user;
+    },
+
+    removeUser(state) {
+      state.userID = null;
+      state.user = {};
+    },
+
+    setUserID(state, userID) {
+      state.userID = userID;
     },
 
     setInventory(state, inventory) {
@@ -36,7 +47,11 @@ export default new Vuex.Store({
 
     subtractCurrency(state, amount) {
       state.user.playerCurrency -= amount;
-    }
+    },
+
+    setLoadingMessage(state, message) {
+      state.loadingMessage = message;
+    },
   },
   actions: {
   },
