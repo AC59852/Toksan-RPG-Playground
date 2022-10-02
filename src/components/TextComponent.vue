@@ -2,7 +2,7 @@
   <section id="textbox">
     <div class="textbox__name">
       <h2 v-if="character">{{character.name}}</h2>
-      <h2 v-else>Unknown Voice</h2>
+      <h2 v-else>You</h2>
     </div>
     <div class="textbox__text" @click="$emit('storyUpdate')">
       <p>{{text}}</p>

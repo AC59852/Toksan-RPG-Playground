@@ -57,6 +57,9 @@ export default {
                   ...doc.data()
                 });
               });
+
+              // sort the characters based on characterID
+              this.characters.sort((a, b) => a.characterID - b.characterID);
             })
         }
 
