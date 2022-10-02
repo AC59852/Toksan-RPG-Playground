@@ -11,14 +11,20 @@
       <li class="menu__button">
         <router-link to="/ModernDistrict/intro">New Game</router-link>
       </li>
-      <li class="menu__button" @click="indev()">
-        <button>Login</button>
+      <li class="menu__button" v-if="this.$store.state.userID == null">
+        <router-link to="/login">Login</router-link>
       </li>
-      <li class="menu__button" @click="indev()">
-        <button>Create Account</button>
+      <li class="menu__button" v-if="this.$store.state.userID == null">
+        <router-link to="/register">Create Account</router-link>
+      </li>
+      <li class="menu__button" v-if="this.$store.state.userID !== null">
+        <router-link to="/house">Load Game</router-link>
       </li>
       <li class="menu__button" @click="indev()">
         <button>Settings</button>
+      </li>
+      <li class="menu__button" @click="logout()" v-if="this.$store.state.userID !== null">
+        <button>Logout</button>
       </li>
     </ul>
   </div>
@@ -32,6 +38,11 @@ export default {
     indev() {
       alert('This feature is still in development!')
     },
+
+    logout() {
+      // run removeUser mutation
+      this.$store.commit('removeUser')
+    }
   },
 }
 </script>

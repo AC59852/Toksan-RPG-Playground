@@ -24,7 +24,17 @@ const routes = [
     path: '/battle',
     name: 'battle',
     component: () => import(/* webpackChunkName: "battle" */ '../views/BattleView.vue')
-  }
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import(/* webpackChunkName: "register" */ '../views/RegisterView.vue')
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import(/* webpackChunkName: "login" */ '../views/LoginView.vue')
+  },
 ]
 
 const router = new VueRouter({

@@ -19,6 +19,11 @@ Vue.use(firestorePlugin)
 
 Vue.config.productionTip = false
 
+// on refresh, save changes prompt
+window.onbeforeunload = function() {
+  return "Are you sure you want to leave?";
+};
+
 // delay going between routes by 3 seconds ONLY WHEN LEAVING ROUTE
 router.beforeEach((to, from, next) => {
   if (from.name) {

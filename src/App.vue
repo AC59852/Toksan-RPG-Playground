@@ -20,12 +20,9 @@
 <script>
   import { db } from '@/db'
   import InventoryComponent from './components/InventoryComponent.vue';
-  import userMixin from './mixins/userMixin';
 
   export default {
     name: 'ToksanRPG',
-
-    mixins: [userMixin],
 
     data() {
       return {
@@ -35,19 +32,19 @@
 
     mounted() {
       // get the items collection
-    db.collection('items')
-    .get()
-    .then(querySnapshot => {
-      // get the items from the query snapshot and give them an ID
-      const items = querySnapshot.docs.map(doc => ({ ...doc.data(), itemID: doc.id }))
+      db.collection('items')
+      .get()
+      .then(querySnapshot => {
+        // get the items from the query snapshot and give them an ID
+        const items = querySnapshot.docs.map(doc => ({ ...doc.data(), itemID: doc.id }))
 
-      console.log(items)
+        console.log(items)
 
-      // set the items array
-      this.$store.commit('setItems', items)
+        // set the items array
+        this.$store.commit('setItems', items)
 
-      console.log(this.$store.state.items)
-    })
+        console.log(this.$store.state.items)
+      })
     },
 
     // watch the vuex store for changes
