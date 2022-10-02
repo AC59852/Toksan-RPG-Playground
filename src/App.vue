@@ -13,7 +13,9 @@
         />
       </transition>
     </header>
-    <div class="overlay-black"></div>
+    <div class="overlay-black">
+      <h1 style="color: white;">{{ this.$store.state.loadingMessage }}</h1>
+    </div>
     <router-view/>
   </div>
 </template>

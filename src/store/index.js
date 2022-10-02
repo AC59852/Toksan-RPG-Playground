@@ -10,6 +10,7 @@ export default new Vuex.Store({
     inventory: [],
     currentStory: {},
     items: [],
+    loadingMessage: null,
   },
   getters: {
   },
@@ -46,7 +47,11 @@ export default new Vuex.Store({
 
     subtractCurrency(state, amount) {
       state.user.playerCurrency -= amount;
-    }
+    },
+
+    setLoadingMessage(state, message) {
+      state.loadingMessage = message;
+    },
   },
   actions: {
   },

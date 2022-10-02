@@ -1,24 +1,32 @@
 <template>
   <section id="login">
-    <form @submit.prevent="login" class="form">
-      <h1>Login</h1>
-      <div class="form__wrapper">
-        <label for="email">Email</label>
-        <input type="email" placeholder="Email" v-model="email" />
-      </div>
-      <div class="form__wrapper">
-        <label for="password">Password</label>
-        <input type="password" placeholder="Password" v-model="password" />
-      </div>
-      <vue-recaptcha ref="invisibleRecaptcha"
-        sitekey="6LfMQkwiAAAAAGuV_sTgAeIpZ2uO_WZDyE_XVYRq"
-        @verify="onVerify"
-        @expired="onExpired"
-        size="invisible"
-      >
-      </vue-recaptcha>
-      <button type="submit">Login</button>
-    </form>
+    <div class="splashscreen__bck">
+      <img src="../assets/img/busstop.png" alt="">
+    </div>
+    <div class="form__wrapper">
+      <form @submit.prevent="login" class="form">
+        <h1>Login</h1>
+        <div class="form__input">
+          <label for="email">Email</label>
+          <input type="email" placeholder="Please Enter Email" v-model="email" />
+        </div>
+        <div class="form__input">
+          <label for="password">Password</label>
+          <input type="password" placeholder="Please Enter Password" v-model="password" />
+        </div>
+        <button type="submit">Login</button>
+      </form>
+      <transition name="fade">
+        <h2 v-if="success">Successfully Logged in!</h2>
+      </transition>
+    </div>
+    <vue-recaptcha ref="invisibleRecaptcha"
+      sitekey="6LfMQkwiAAAAAGuV_sTgAeIpZ2uO_WZDyE_XVYRq"
+      @verify="onVerify"
+      @expired="onExpired"
+      size="invisible"
+    >
+    </vue-recaptcha>
   </section>
 </template>
 
@@ -36,6 +44,7 @@ export default {
     return {
       email: '',
       password: '',
+      success: false,
     }
   },
 
@@ -60,14 +69,21 @@ export default {
             // if the user exists, run the getUser function
             if (querySnapshot.docs.length > 0) {
               querySnapshot.forEach((doc) => {
+                console.log(doc)
                 this.$store.commit('setUserID', doc.id)
                 this.getUser(doc.id)
 
+                this.success = true
+
                 // redirect to the home page
-                this.$router.push('/')
+                setTimeout(() => {
+                  this.$router.push('/')
+                }, 1000)
               })
             } else {
-              alert('User does not exist')
+              alert('Email or password is incorrect')
+              // reset the captcha
+              this.$refs.invisibleRecaptcha.reset()
             }
           })
       }

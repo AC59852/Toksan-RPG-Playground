@@ -24,6 +24,13 @@ window.onbeforeunload = function() {
   return "Are you sure you want to leave?";
 };
 
+// prevent dragging all images
+document.addEventListener('dragstart', function(event) {
+  if (event.target.tagName.toLowerCase() === 'img') {
+    event.preventDefault();
+  }
+});
+
 // delay going between routes by 3 seconds ONLY WHEN LEAVING ROUTE
 router.beforeEach((to, from, next) => {
   if (from.name) {
@@ -39,7 +46,9 @@ router.beforeEach((to, from, next) => {
 
 // check when the route loads
 router.afterEach((from) => {
+  store.commit('setLoadingMessage', from.name);
   if (from.name) {
+    // set the state loading message to the route name
     setTimeout(() => {
       // remove background-image from body
       document.querySelector(".overlay-black").classList.remove("overlay-active")

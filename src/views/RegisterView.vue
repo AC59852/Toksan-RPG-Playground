@@ -1,28 +1,32 @@
 <template>
   <section id="register">
-    <form @submit.prevent="createAcc" class="form">
-      <h1>Register</h1>
-      <div class="form__wrapper">
-        <label for="email">Email</label>
-        <input type="email" placeholder="Email" v-model="email" />
-      </div>
-      <div class="form__wrapper">
-        <label for="username">Username</label>
-        <input type="text" placeholder="Username" v-model="username" />
-      </div>
-      <div class="form__wrapper">
-        <label for="password">Password</label>
-        <input type="password" placeholder="Password" v-model="password" />
-      </div>
-      <vue-recaptcha ref="invisibleRecaptcha"
-        sitekey="6LfMQkwiAAAAAGuV_sTgAeIpZ2uO_WZDyE_XVYRq"
-        @verify="onVerify"
-        @expired="onExpired"
-        size="invisible"
-      >
-      </vue-recaptcha>
-      <button type="submit">Register</button>
-    </form>
+    <div class="splashscreen__bck">
+      <img src="../assets/img/register.png" alt="">
+    </div>
+    <div class="form__wrapper">
+      <form @submit.prevent="createAcc" class="form">
+        <h1>Register</h1>
+        <div class="form__input">
+          <label for="email">Email</label>
+          <input type="email" placeholder="Email" v-model="email" />
+        </div>
+        <div class="form__input">
+          <label for="password">Password</label>
+          <input type="password" placeholder="Password" v-model="password" />
+        </div>
+        <button type="submit">Register</button>
+      </form>
+      <transition name="fade">
+        <h2 v-if="success">Account Created!</h2>
+      </transition>
+    </div>
+    <vue-recaptcha ref="invisibleRecaptcha"
+      sitekey="6LfMQkwiAAAAAGuV_sTgAeIpZ2uO_WZDyE_XVYRq"
+      @verify="onVerify"
+      @expired="onExpired"
+      size="invisible"
+    >
+    </vue-recaptcha>
   </section>
 </template>
 
@@ -39,15 +43,15 @@ export default {
   data() {
     return {
       email: '',
-      username: '',
       password: '',
+      success: false,
     }
   },
 
   methods: {
     createAcc() {
       // if the email contains a @ and the password is longer than 6 characters
-      if (this.email.includes('@') && this.password.length > 6 && this.username.length > 2) {
+      if (this.email.includes('@') && this.password.length > 6) {
         this.$refs.invisibleRecaptcha.execute()
       } else {
         alert('Please fill in all the fields correctly')
@@ -69,7 +73,6 @@ export default {
           db.collection('users')
             .add({
               email: this.email,
-              username: this.username,
               password: this.password,
               playerCurrency: 0,
               playerInventory: [],
@@ -78,14 +81,19 @@ export default {
               console.log('User created with ID: ', docRef.id)
               // set the user id in the store
               this.$store.commit('setUserID', docRef.id)
-
               this.getUser()
+              
+              this.success = true
 
               // redirect to the splash screen
-              this.$router.push('/')
+              setTimeout(() => {
+                this.$router.push('/')
+              }, 1000)
             })
             .catch(error => {
               console.error('Error adding document: ', error)
+
+              this.$refs.invisibleRecaptcha.reset()
             })
         })
       }
