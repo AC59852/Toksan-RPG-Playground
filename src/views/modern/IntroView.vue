@@ -38,12 +38,13 @@
           this.story.shift();
         } else {
           console.log("all out")
+
+          if(this.$store.state.user.saveData) {
+            // update the saveData.intro to be true
+            this.$store.state.user.saveData.intro = true;
+          }
         }
       },
-
-      test() {
-        console.log("this worked")
-      }
     },
 
     components: {

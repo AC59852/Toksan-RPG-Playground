@@ -8,7 +8,7 @@ const routes = [
   {
     path: '/',
     name: 'Splash Screen',
-    component: SplashView
+    component: SplashView,
   },
   {
     path: '/shop',
@@ -18,7 +18,7 @@ const routes = [
   {
     path: '/ModernDistrict/intro',
     name: 'Intro',
-    component: () => import(/* webpackChunkName: "modern-intro" */ '../views/modern/IntroView.vue')
+    component: () => import(/* webpackChunkName: "modern-intro" */ '../views/modern/IntroView.vue'),
   },
   {
     path: '/battle',

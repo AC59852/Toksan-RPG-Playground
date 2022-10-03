@@ -37,7 +37,6 @@ export default {
               this.getStoryComponents('events');
               
             } else {
-              console.log('No story');
               return;
             }
           })
@@ -45,7 +44,6 @@ export default {
 
       async getStoryComponents(component) {
         let lowerCaseZone = this.zone.toLowerCase();
-        console.log(component)
 
         // get the characters and store them
         if(component === 'conversations') {
