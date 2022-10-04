@@ -15,6 +15,7 @@
   import storyMixin from '@/mixins/storyMixin';
   import eventMixin from '@/mixins/eventMixin';
   import TextComponent from '@/components/TextComponent.vue';
+  import { db } from '@/db';
   
   export default {
     mixins: [storyMixin, eventMixin],
@@ -40,9 +41,20 @@
           console.log("all out")
 
           if(this.$store.state.user.saveData) {
-            // update the saveData.intro to be true
-            this.$store.state.user.saveData.intro = true;
+
+            if(this.$store.state.user.saveData.intro !== true) {
+              // update the saveData.intro to be true
+              this.$store.state.user.saveData.intro = true;
+
+              // update the saveData on the account
+              db.collection('users').doc(this.$store.state.userID).update({
+                // only update saveData intro
+                "saveData.intro": true,
+              })
+            }
           }
+
+          
         }
       },
     },
