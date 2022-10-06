@@ -1,7 +1,8 @@
 <template>
   <section id="battle">
     <div class="battle__enemy">
-      <h2>HP: {{ this.enemy.HP }}</h2>
+      <h2>Player HP: {{ this.player.HP }}</h2>
+      <h2>Enemy HP: {{ this.enemy.HP }}</h2>
       <!-- progress bar -->
       <div class="progress">
         <progress class="progress__bar" :max="this.enemy.maxHP" :value="this.enemy.HP"></progress>
@@ -95,6 +96,8 @@ export default {
         } else {
           // if the cooldown is not 0, display a message
           this.battleText = `You can't use ${move.name} yet!`;
+
+          return;
         }
       } else {
         // if the move does not have a cooldown, attack

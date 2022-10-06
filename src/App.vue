@@ -1,11 +1,10 @@
 <template>
   <div id="app">
     <header>
-      <nav>
-        <router-link to="/">Home</router-link> |
-        <router-link to="/shop">Shop</router-link> |
-        <router-link to="/battle">Battle</router-link> |
-        <span @click="toggleInventory()">Open Inventory</span>
+      <nav id="nav">
+        <font-awesome-icon class="nav__icon" icon="fa-solid fa-gear" color="white" size="1x" @click="toggleSettings()"/>
+        <font-awesome-icon class="nav__icon" icon="fa-solid fa-map" size="1x" color="white" @click="toggleChapters()" />
+        <font-awesome-icon class="nav__icon" icon="fa-solid fa-briefcase" color="white" size="1x" @click="toggleInventory()" />
       </nav>
       <transition name="fade">
         <InventoryComponent v-if="inventoryOpened"
@@ -17,7 +16,7 @@
     <div class="overlay-black">
       <h1 style="color: white;">{{ this.$store.state.loadingMessage }}</h1>
     </div>
-    <router-view/>
+    <router-view @closeInv="toggleInventory()"/>
   </div>
 </template>
 <script>
@@ -65,8 +64,10 @@
 
     methods: {
       toggleInventory() {
-        console.log('test')
         this.inventoryOpened = !this.inventoryOpened;
+
+        document.querySelector("#textbox").classList.toggle("hide");
+        document.querySelector(".house__menu").classList.toggle("hide");
       }
     },
 

@@ -9,6 +9,7 @@ export default new Vuex.Store({
     user: {
       playerCurrency: 0,
       playerInventory: [],
+      saveData: {},
     },
     userID: null,
     inventory: [],
