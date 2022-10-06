@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    originalRoute: '',
     user: {
       playerCurrency: 0,
       playerInventory: [],
@@ -60,6 +61,10 @@ export default new Vuex.Store({
 
     setLoadingMessage(state, message) {
       state.loadingMessage = message;
+    },
+
+    setOriginalRoute(state, route) {
+      state.originalRoute = route;
     },
   },
   actions: {
