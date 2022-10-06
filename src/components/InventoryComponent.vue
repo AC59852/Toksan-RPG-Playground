@@ -6,7 +6,7 @@
         <div class="inventory__close" @click="$emit('closeInv')">Close X</div>
       </div>
       <ul class="inventory__items">
-        <li class="inventory__item" @click="setCurrentItem(item, $event)" v-for="(item, index) in inventory" :key="index">
+        <li class="inventory__item" @click="setCurrentItem(item, $event)" v-for="(item, index) in updatedInventory" :key="index">
           <!-- <img :src="item.icon" :alt="'Small icon of the item: ' + item.name + ' within the inventory'"> -->
           <font-awesome-icon icon="fa-regular fa-address-card" size="5x" />
         </li>
@@ -42,7 +42,6 @@ export default {
   props: ['user'],
   data() {
     return {
-      inventory: [],
       currentItem: null,
     }
   },
@@ -50,16 +49,19 @@ export default {
   mounted() {
     // set the inventory
     var playerInventory = this.user
+    var inventory = []
 
     console.log(this.$store.state.items)
+
+    // this.inventory = this.$store.state.inventory
 
     playerInventory.forEach(item => {
       // find the item in the items collection based on the string provided
       const foundItem = this.$store.state.items.find(i => i.itemID === item)
       // add the item to the inventory array
-      this.inventory.push(foundItem)
+      inventory.push(foundItem)
       // update the vuex inventory state
-      this.$store.commit('updateInventory', this.inventory)
+      this.$store.commit('updateInventory', inventory)
       console.log(this.$store.state.inventory)
     })
 
@@ -69,6 +71,10 @@ export default {
   computed: {
     currency() {
       return this.$store.state.user.playerCurrency
+    },
+
+    updatedInventory() {
+      return this.$store.state.inventory
     },
   },
 

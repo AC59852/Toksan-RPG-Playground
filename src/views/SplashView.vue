@@ -1,5 +1,5 @@
 <template>
-  <div id="splashscreen">
+  <section id="splashscreen">
     <div class="splashscreen__bck">
       <img src="../assets/img/splashscreen.png" alt="">
     </div>
@@ -17,8 +17,8 @@
       <li class="menu__button" v-if="this.$store.state.userID == null">
         <router-link to="/register">Create Account</router-link>
       </li>
-      <li class="menu__button" v-if="this.$store.state.userID !== null">
-        <router-link to="/house">Load Game</router-link>
+      <li class="menu__button" @click="checkSaveData()" v-if="this.$store.state.userID !== null">
+        <button>Load Game</button>
       </li>
       <li class="menu__button" @click="indev()">
         <button>Settings</button>
@@ -27,7 +27,7 @@
         <button>Logout</button>
       </li>
     </ul>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -37,6 +37,20 @@ export default {
   methods: {
     indev() {
       alert('This feature is still in development!')
+    },
+
+    checkSaveData() {
+      var saveData = this.$store.state.user.saveData;
+
+      if(saveData.intro == true) {
+        this.$router.push('/ModernDistrict/tutorial')
+
+        if(saveData.tutorial == true) {
+        this.$router.push('/home')
+        }
+      } else {
+        alert("You don't have a save, please start a New Game")
+      }
     },
 
     logout() {

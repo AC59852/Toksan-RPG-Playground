@@ -9,9 +9,11 @@ import './assets/css/main.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { far } from '@fortawesome/free-regular-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons'
 
 
 library.add(far)
+library.add(fas)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
@@ -33,6 +35,17 @@ document.addEventListener('dragstart', function(event) {
 
 // delay going between routes by 3 seconds ONLY WHEN LEAVING ROUTE
 router.beforeEach((to, from, next) => {
+  // the user has a 30% chance to navigate to the Battle route instead of the normal route
+  var random = Math.floor(Math.random() * 10);
+  if (random < 1 && to.name !== 'Intro' && to.name !== 'Battle' && to.name !== 'Login' && to.name !== 'Create Account' && to.name !== 'Splash Screen' && to.name !== 'Tutorial') {
+    // log the original to.name
+    console.log('Original Route ' + to.name)
+    // add the original route to the store
+    store.commit('setOriginalRoute', to.name)
+
+    next({ name: 'Battle' });
+  }
+
   if (from.name) {
     document.querySelector(".overlay-black").classList.add("overlay-active")
     setTimeout(() => {

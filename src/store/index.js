@@ -5,7 +5,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user: {},
+    originalRoute: '',
+    user: {
+      playerCurrency: 0,
+      playerInventory: [],
+      saveData: {},
+    },
     userID: null,
     inventory: [],
     currentStory: {},
@@ -21,7 +26,13 @@ export default new Vuex.Store({
 
     removeUser(state) {
       state.userID = null;
-      state.user = {};
+
+      state.user = {
+        playerCurrency: 0,
+        playerInventory: [],
+      };
+
+      state.inventory = [];
     },
 
     setUserID(state, userID) {
@@ -51,6 +62,10 @@ export default new Vuex.Store({
 
     setLoadingMessage(state, message) {
       state.loadingMessage = message;
+    },
+
+    setOriginalRoute(state, route) {
+      state.originalRoute = route;
     },
   },
   actions: {
