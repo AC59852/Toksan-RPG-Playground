@@ -103,6 +103,33 @@ nav {
   cursor: pointer;
 }
 
+.save__popup {
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--ui-box-bg);
+  width: 300px;
+  height: 80px;
+  border-radius: var(--border-small);
+  box-shadow: var(--shadow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: top 0.5s ease;
+}
+
+.save__popup h2 {
+  font-family: var(--font);
+  color: white;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.save__popup--active {
+  top: 2% !important;
+}
+
 /* End of Nav */
 
 /* Start of Inventory */

@@ -16,12 +16,14 @@
     <div class="overlay-black">
       <h1 style="color: white;">{{ this.$store.state.loadingMessage }}</h1>
     </div>
+    <SavePopupComponent />
     <router-view @closeInv="toggleInventory()"/>
   </div>
 </template>
 <script>
   import { db } from '@/db'
   import InventoryComponent from './components/InventoryComponent.vue';
+  import SavePopupComponent from './components/SavePopupComponent.vue';
 
   export default {
     name: 'ToksanRPG',
@@ -54,6 +56,18 @@
       user() {
         console.log(this.$store.state.user)
       },
+      
+      // every time the $store.state.user.saveData changes, update the user's saveData
+      '$store.state.user.saveData': {
+        handler() {
+          document.querySelector(".save__popup").classList.add("save__popup--active");
+
+          setTimeout(() => {
+            document.querySelector(".save__popup").classList.remove("save__popup--active");
+          }, 2000);
+        },
+        deep: true
+      }
     },
 
     computed: {
@@ -72,7 +86,8 @@
     },
 
     components: {
-    InventoryComponent
-  }
+    InventoryComponent,
+    SavePopupComponent,
+    }
 }
 </script>

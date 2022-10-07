@@ -1,5 +1,5 @@
 <template>
-  <section id="modernIntro story">
+  <section id="modernTutorial story">
     <div class="story__characters">
       <img v-for="(character, index) in characters" :src="character.image" :key="character.id" :class="`character${index + 1}`">
     </div>
@@ -41,16 +41,16 @@
           console.log("all out")
 
           if(this.$store.state.user.saveData) {
-            console.log(this.$store.state.user.saveData.intro)
+            console.log(this.$store.state.user.saveData.tutorial)
 
-            if(this.$store.state.user.saveData.intro !== true) {
-              // update the saveData.intro to be true
-              this.$store.state.user.saveData.intro = true;
+            if(this.$store.state.user.saveData.tutorial !== true) {
+              // update the saveData.tutorial to be true
+              this.$store.state.user.saveData.tutorial = true;
 
               // update the saveData on the account
               db.collection('users').doc(this.$store.state.userID).update({
-                // only update saveData intro
-                "saveData.intro": true,
+                // only update saveData tutorial
+                "saveData.tutorial": true,
               })
             }
           }

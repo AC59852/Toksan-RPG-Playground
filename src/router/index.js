@@ -21,6 +21,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "modern-intro" */ '../views/modern/IntroView.vue'),
   },
   {
+    path: '/ModernDistrict/tutorial',
+    name: 'Tutorial',
+    component: () => import(/* webpackChunkName: "modern-tutorial" */ '../views/modern/TutorialView.vue'),
+  },
+  {
     path: '/battle',
     name: 'Battle',
     component: () => import(/* webpackChunkName: "battle" */ '../views/BattleView.vue')
