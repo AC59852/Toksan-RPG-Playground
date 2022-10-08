@@ -47,7 +47,7 @@ export default {
 
         // get the characters and store them
         if(component === 'conversations') {
-          db.collection('characters').where('zone', '==', lowerCaseZone).get()
+          db.collection('characters').where('area', '==', this.area).get()
             .then((querySnapshot) => {
               querySnapshot.forEach((doc) => {
                 this.characters.push({

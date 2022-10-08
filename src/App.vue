@@ -3,7 +3,7 @@
     <header>
       <nav id="nav">
         <font-awesome-icon class="nav__icon" icon="fa-solid fa-gear" color="white" size="1x" @click="toggleSettings()"/>
-        <font-awesome-icon class="nav__icon" icon="fa-solid fa-map" size="1x" color="white" @click="toggleChapters()" />
+        <font-awesome-icon class="nav__icon" icon="fa-solid fa-map" size="1x" color="white" @click="locationsOpened = !locationsOpened" />
         <font-awesome-icon class="nav__icon" icon="fa-solid fa-briefcase" color="white" size="1x" @click="toggleInventory()" />
       </nav>
       <transition name="fade">
@@ -16,12 +16,18 @@
     <div class="overlay-black">
       <h1 style="color: white;">{{ this.$store.state.loadingMessage }}</h1>
     </div>
+    <SavePopupComponent />
+    <transition name="fade">
+      <MapComponent v-if="locationsOpened"/>
+    </transition>
     <router-view @closeInv="toggleInventory()"/>
   </div>
 </template>
 <script>
   import { db } from '@/db'
   import InventoryComponent from './components/InventoryComponent.vue';
+  import SavePopupComponent from './components/SavePopupComponent.vue';
+import MapComponent from './components/MapComponent.vue';
 
   export default {
     name: 'ToksanRPG',
@@ -29,6 +35,7 @@
     data() {
       return {
         inventoryOpened: false,
+        locationsOpened: false,
       }
     },
 
@@ -54,6 +61,18 @@
       user() {
         console.log(this.$store.state.user)
       },
+      
+      // every time the $store.state.user.saveData changes, update the user's saveData
+      '$store.state.user.saveData': {
+        handler() {
+          document.querySelector(".save__popup").classList.add("save__popup--active");
+
+          setTimeout(() => {
+            document.querySelector(".save__popup").classList.remove("save__popup--active");
+          }, 2000);
+        },
+        deep: true
+      }
     },
 
     computed: {
@@ -72,7 +91,9 @@
     },
 
     components: {
-    InventoryComponent
-  }
+    InventoryComponent,
+    SavePopupComponent,
+    MapComponent
+}
 }
 </script>

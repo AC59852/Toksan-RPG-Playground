@@ -2,6 +2,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   transition: all 0.5s ease;
+  height: 100vh;
 }
 
 .hide {
@@ -101,6 +102,54 @@ nav {
   box-sizing: border-box;
   border-radius: var(--border-small);
   cursor: pointer;
+}
+
+.save__popup {
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--ui-box-bg);
+  width: 300px;
+  height: 80px;
+  border-radius: var(--border-small);
+  box-shadow: var(--shadow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: top 0.5s ease;
+}
+
+.save__popup h2 {
+  font-family: var(--font);
+  color: white;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.save__popup--active {
+  top: 2% !important;
+}
+
+
+#map {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+}
+
+.menu--map {
+  height: 620px !important;
+  width: 470px !important;
+  top: 50% !important;
+}
+
+.menu__button--map {
+  height: 88px !important;
+}
+
+.menu__button--map a {
+  font-size: 30px !important;
 }
 
 /* End of Nav */
@@ -473,9 +522,10 @@ nav {
 
 /* End of Characters */
 
+
 /* Start of Textbox */
 
-#textbox {
+#textbox, .battle__textbox {
   width: 80%;
   max-width: 1100px;
   position: fixed;
@@ -529,6 +579,209 @@ nav {
 }
 
 /* End of Textbox */
+
+/* Start of Battle */
+.battle__enemy, .battle__player { transition: opacity 0.6s ease; }
+
+.battle__enemy {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+.enemy__hp {
+  width: 45%;
+  text-align: center;
+  background-color: var(--ui-box-bg);
+  padding: 20px 0;
+  box-sizing: border-box;
+  border-radius: var(--border-small);
+}
+
+.enemy__image {
+  height: 100%;
+}
+
+.enemy__image img { height: 100%; }
+
+.enemy__hp h2 {
+  font-family: var(--font);
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+}
+
+.battle__player {
+  position: absolute;
+  bottom: 3%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 1300px;
+  display: flex;
+  gap: 40px;
+}
+
+.battle__textbox {
+  position: relative;
+  top: initial;
+  left: initial;
+  transform: translate(0, 0);
+}
+
+.player__moves {
+  width: 20%;
+  max-width: 210px;
+  position: relative;
+}
+
+.player__hp {
+  position: absolute;
+  top: -64px;
+  background-color: var(--ui-box-bg);
+  width: 100%;
+  padding: 13px 0;
+  border-radius: var(--border-small);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.player__hp h2 {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: var(--font);
+  color: white;
+}
+
+.progress__bar {
+  width: 80%;
+  height: 8px;
+  background-color: rgb(44, 50, 73, 0.9);
+  border-radius: 900000px;
+  position: relative;
+  color: white;
+}
+
+.progress__bar::-webkit-progress-value {
+  background: white;
+  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  border-radius: 900000px;
+}
+
+.progress__bar::-moz-progress-bar {
+  background: white;
+  border-radius: 900000px;
+  border: 0;
+}
+
+.battle__moves {
+  background-color: var(--ui-box-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--border-small);
+  gap: 12px;
+  height: 210px;
+}
+
+.battle__moves li {
+  width: 80%;
+}
+
+.battle__move {
+  width: 100%;
+  height: 50px;
+  background-color: rgb(44, 50, 73, 0.9);
+  border-radius: var(--border-small);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+
+#victory {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  max-width: 1000px;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--ui-box-bg);
+  border-radius: var(--border-big);
+  box-shadow: var(--shadow);
+}
+
+.victory__heading {
+  font-size: 46px;
+  font-weight: bold;
+  font-family: var(--font);
+  color: white;
+  text-align: center;
+  margin-top: 70px;
+  margin-bottom: 50px;
+  padding-bottom: 5px;
+  border-bottom: solid 7px white;
+}
+
+.victory__rewards {
+  margin: auto;
+}
+
+.victory__rewards h3 {
+  text-align: center;
+  font-family: var(--font);
+  font-size: 32px;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.victory__currency {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.victory__currency span {
+  font-size: 26px;
+  font-weight: bold;
+  font-family: var(--font);
+  color: white;
+}
+
+.victory__buttons {
+  margin-top: auto;
+  margin-bottom: 7%;
+  display: flex;
+  gap: 20px;
+}
+
+.victory__buttons a {
+  text-decoration: none;
+  font-family: var(--font);
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* End of Battle */
 
 /* Start of Animations */
 

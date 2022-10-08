@@ -37,13 +37,11 @@ document.addEventListener('dragstart', function(event) {
 router.beforeEach((to, from, next) => {
   // the user has a 30% chance to navigate to the Battle route instead of the normal route
   var random = Math.floor(Math.random() * 10);
-  if (random < 1 && to.name !== 'Intro' && to.name !== 'Battle' && to.name !== 'Login' && to.name !== 'Create Account' && to.name !== 'Splash Screen' && to.name !== 'Tutorial') {
-    // log the original to.name
-    console.log('Original Route ' + to.name)
+  if (random < 4 && to.name !== 'Intro' && to.name !== 'Battle' && to.name !== 'Login' && to.name !== 'Create Account' && to.name !== 'Splash Screen' && to.name !== 'Tutorial' && from.name !== 'Battle') {
     // add the original route to the store
     store.commit('setOriginalRoute', to.name)
 
-    next({ name: 'Battle' });
+    router.push('/battle').catch(() => {});
   }
 
   if (from.name) {

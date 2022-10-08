@@ -60,6 +60,10 @@ export default new Vuex.Store({
       state.user.playerCurrency -= amount;
     },
 
+    addCurrency(state, amount) {
+      state.user.playerCurrency += amount;
+    },
+
     setLoadingMessage(state, message) {
       state.loadingMessage = message;
     },
