@@ -55,7 +55,8 @@
             }
           }
 
-          
+          // push user to /home
+          this.$router.push({ name: 'Home' });
         }
       },
     },

@@ -55,6 +55,8 @@
             }
           }
 
+          // push user to /ModernDistrict/tutorial
+          this.$router.push({ name: 'Tutorial' });
           
         }
       },

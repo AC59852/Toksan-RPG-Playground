@@ -3,7 +3,7 @@
     <header>
       <nav id="nav">
         <font-awesome-icon class="nav__icon" icon="fa-solid fa-gear" color="white" size="1x" @click="toggleSettings()"/>
-        <font-awesome-icon class="nav__icon" icon="fa-solid fa-map" size="1x" color="white" @click="toggleChapters()" />
+        <font-awesome-icon class="nav__icon" icon="fa-solid fa-map" size="1x" color="white" @click="locationsOpened = !locationsOpened" />
         <font-awesome-icon class="nav__icon" icon="fa-solid fa-briefcase" color="white" size="1x" @click="toggleInventory()" />
       </nav>
       <transition name="fade">
@@ -17,6 +17,9 @@
       <h1 style="color: white;">{{ this.$store.state.loadingMessage }}</h1>
     </div>
     <SavePopupComponent />
+    <transition name="fade">
+      <MapComponent v-if="locationsOpened"/>
+    </transition>
     <router-view @closeInv="toggleInventory()"/>
   </div>
 </template>
@@ -24,6 +27,7 @@
   import { db } from '@/db'
   import InventoryComponent from './components/InventoryComponent.vue';
   import SavePopupComponent from './components/SavePopupComponent.vue';
+import MapComponent from './components/MapComponent.vue';
 
   export default {
     name: 'ToksanRPG',
@@ -31,6 +35,7 @@
     data() {
       return {
         inventoryOpened: false,
+        locationsOpened: false,
       }
     },
 
@@ -88,6 +93,7 @@
     components: {
     InventoryComponent,
     SavePopupComponent,
-    }
+    MapComponent
+}
 }
 </script>
