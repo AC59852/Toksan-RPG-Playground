@@ -1,22 +1,30 @@
 <template>
   <section id="battle">
     <div class="battle__enemy">
-      <h2>Player HP: {{ this.player.HP }}</h2>
-      <h2>Enemy HP: {{ this.enemy.HP }}</h2>
-      <!-- progress bar -->
-      <div class="progress">
+      <div class="enemy__hp">
+        <h2>{{this.enemy.name}} HP: {{ this.enemy.HP }}</h2>
         <progress class="progress__bar" :max="this.enemy.maxHP" :value="this.enemy.HP"></progress>
       </div>
+      <div class="enemy__image">
+        <img :src="this.enemy.image" alt="enemy image">
+      </div>
     </div>
-    <div class="battle__text">
-      <div class="battle__textbox">
+    <div class="battle__player">
+      <div class="textbox__text battle__textbox">
         <p>{{ this.battleText }}</p>
       </div>
-      <ul class="battle__moves">
-        <li v-for="(move, index) in player.moves" :key="index">
-          <button class="battle__move" @click="attack(move)">{{ move.name }}</button>
-        </li>
-      </ul>
+      <div class="player__moves">
+        <div class="player__hp">
+          <h2>HP: {{ this.player.HP }}</h2>
+          <!-- progress bar -->
+          <progress class="progress__bar progress__bar--player" :max="this.player.maxHP" :value="this.player.HP"></progress>
+        </div>
+        <ul class="battle__moves">
+          <li v-for="(move, index) in player.moves" :key="index">
+            <button class="battle__move" @click="attack(move)">{{ move.name }}</button>
+          </li>
+        </ul>
+      </div>
     </div>
   </section>
 </template>
@@ -31,6 +39,27 @@ export default {
     return {
       battleText: "What will you do?",
       victory: false,
+      enemyImages: [
+        {id: 0, image: 'https://firebasestorage.googleapis.com/v0/b/toksan-rpg.appspot.com/o/f171.png?alt=media&token=5a103077-b407-436c-b1e0-e8985ff0fb8c'},
+        {id: 1, image: 'https://firebasestorage.googleapis.com/v0/b/toksan-rpg.appspot.com/o/f175.png?alt=media&token=df3fd3ec-01bc-43d3-9acf-c3c843d967e3'},
+        {id: 2, image: 'https://firebasestorage.googleapis.com/v0/b/toksan-rpg.appspot.com/o/f177.png?alt=media&token=738ead1f-19ab-4d28-8481-aef2a45622a3'},
+        {id: 3, image: 'https://firebasestorage.googleapis.com/v0/b/toksan-rpg.appspot.com/o/f298.png?alt=media&token=6d4330b0-220c-459a-a5ca-c026208d1ae2'},
+      ],
+      enemyNames: [
+        {id: 0, name: 'Hikaru Oki'},
+        {id: 1, name: 'Jun Uyeda'},
+        {id: 2, name: 'Masumi Yamane'},
+        {id: 3, name: 'Riku Kikuchi'},
+        {id: 4, name: 'Satsuki Komuro'},
+        {id: 5, name: 'Shinjiro Isa'},
+        {id: 6, name: 'Kaoru Uematsu'},
+      ],
+      backgroundImages: [
+      {id: 0, image: 'https://firebasestorage.googleapis.com/v0/b/toksan-rpg.appspot.com/o/boardwalk.png?alt=media&token=9b1b9da4-cdb7-4af3-a382-e3444bf10f6c'},
+      {id: 1, image: 'https://firebasestorage.googleapis.com/v0/b/toksan-rpg.appspot.com/o/splashscreen.png?alt=media&token=f1d37e64-779e-449b-a907-f70b5aee5a2a'},
+      {id: 2, image: 'https://firebasestorage.googleapis.com/v0/b/toksan-rpg.appspot.com/o/coffee_rain.png?alt=media&token=300898d3-a4d3-4ef4-ac12-670317ab1086'},
+      {id: 3, image: 'https://firebasestorage.googleapis.com/v0/b/toksan-rpg.appspot.com/o/street.jpg?alt=media&token=b04c6cfe-4b85-449b-9ffe-8dec2f35050a'},
+      ],
       enemy: {
         HP: 100,
         maxHP: 100,
@@ -39,10 +68,13 @@ export default {
         critchance: 0.1,
         pepperSprayDuration: 0,
         shatterpointDuration: 0,
+        name: null,
+        image: null,
       },
 
       player: {
         HP: 100,
+        maxHP: 100,
         moves: [
           {
             name: 'Attack',
@@ -73,6 +105,10 @@ export default {
 
   mounted() {
     this.validateFight()
+
+    this.enemy.name = this.enemyNames[Math.floor(Math.random() * this.enemyNames.length)].name
+    this.enemy.image = this.enemyImages[Math.floor(Math.random() * this.enemyImages.length)].image
+    document.body.style.backgroundImage = `url(${this.backgroundImages[Math.floor(Math.random() * this.backgroundImages.length)].image})`
   },
 
   // watch the enemy HP. if it reaches 0 or below, end the battle
@@ -137,6 +173,12 @@ export default {
     endBattle() {
       alert("You won!");
 
+      // set the enemy damage to 0
+      this.enemy.attack = 0;
+      this.enemy.hitchance = 0;
+
+      this.enemy.shatterpointDuration = 0;
+
       // disbale the buttons
       document.querySelectorAll('.battle__move').forEach(move => {
         // prevent the button from firing
@@ -146,8 +188,17 @@ export default {
         move.style.cursor = "not-allowed";
       })
 
+      this.getReward();
+
       // set the victory variable to true
       this.victory = true;
+    },
+
+    getReward() {
+      // get a random number between 50 and 300
+      let reward = Math.floor(Math.random() * 250) + 50;
+
+      this.$store.commit('addCurrency', reward)
     },
 
     checkHit(hitchance) {

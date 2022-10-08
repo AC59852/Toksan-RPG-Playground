@@ -35,6 +35,12 @@ export default {
           document.querySelector(`.${item.data.hiddenChar}`).classList.add("hide-character");
           this.story.shift();
           break;
+        case 'change-background':
+          document.querySelector("body").style.backgroundImage = `url(${item.data.background})`;
+          // add a transition to the background image
+          document.querySelector("body").style.transition = "background-image 1s ease-in-out";
+          this.story.shift();
+          break;
         default:
           console.log('no event name');
           break;
