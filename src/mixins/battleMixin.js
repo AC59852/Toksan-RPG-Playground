@@ -15,15 +15,16 @@ export default {
         if(playerInventory[i].bonus_hp) {
           this.player.HP += playerInventory[i].bonus_hp;
           this.player.maxHP = this.player.HP;
-
-          this.enemy.maxHP = this.player.HP * 0.8;
-          this.enemy.attack = this.player.HP / 10;
         }
 
         // if the item has bonus_bleed, add it to the Shatterpoint move
         if(playerInventory[i].bonus_bleed) {
           this.player.moves[2].damageOverTime += playerInventory[i].bonus_bleed;
         }
+
+        this.enemy.maxHP = this.player.HP * 0.8;
+        this.enemy.HP = this.enemy.maxHP;
+        this.enemy.attack = this.player.HP / 10;
       }
     },
 
