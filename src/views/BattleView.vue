@@ -56,10 +56,10 @@ export default {
                 { id: 6, name: "Kaoru Uematsu" },
             ],
             backgroundImages: [
-                { id: 0, image: "https://firebasestorage.googleapis.com/v0/b/toksan-rpg.appspot.com/o/boardwalk.jpg?alt=media&token=aa64fc8a-5f1a-4c1b-9244-f2868b1dcb9f" },
-                { id: 1, image: "https://firebasestorage.googleapis.com/v0/b/toksan-rpg.appspot.com/o/splashscreen.jpg?alt=media&token=da335a13-cd85-4594-a96f-e9034adb7175" },
-                { id: 2, image: "https://firebasestorage.googleapis.com/v0/b/toksan-rpg.appspot.com/o/coffee_rain.jpg?alt=media&token=ebacc760-afef-4820-a18f-3a71cc7fdd69" },
-                { id: 3, image: "https://firebasestorage.googleapis.com/v0/b/toksan-rpg.appspot.com/o/street.jpg?alt=media&token=b04c6cfe-4b85-449b-9ffe-8dec2f35050a" },
+                { id: 0, image: "/img/boardwalk.jpg" },
+                { id: 1, image: "/img/coffee_rain.jpg" },
+                { id: 2, image: "/img/splashscreen.jpg" },
+                { id: 3, image: "/img/street.jpg" },
             ],
             enemy: {
                 HP: 100,
@@ -102,7 +102,7 @@ export default {
             },
         };
     },
-    created() {
+    mounted() {
         this.validateFight();
         this.enemy.name = this.enemyNames[Math.floor(Math.random() * this.enemyNames.length)].name;
         this.enemy.image = this.enemyImages[Math.floor(Math.random() * this.enemyImages.length)].image;
