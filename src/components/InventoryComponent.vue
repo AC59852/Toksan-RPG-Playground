@@ -8,7 +8,7 @@
       <ul class="inventory__items">
         <li class="inventory__item" @click="setCurrentItem(item, $event)" v-for="(item, index) in updatedInventory" :key="index">
           <!-- <img :src="item.icon" :alt="'Small icon of the item: ' + item.name + ' within the inventory'"> -->
-          <font-awesome-icon icon="fa-regular fa-address-card" size="5x" />
+          <font-awesome-icon :icon="item.icon" size="4x" />
         </li>
       </ul>
     </div>
@@ -23,8 +23,9 @@
           <li v-else-if="currentItem.required == false">Key Item: No</li>
           <li v-if="currentItem.shopItem == true">Purchasable: Yes</li>
           <li v-else-if="currentItem.shopItem == false">Purchasable: No</li>
-          <li v-if="currentItem.bonus_hp">Bonus HP: {{currentItem.bonus_hp}}</li>
-          <li v-if="currentItem.bonus_atk">Bonus Attack: {{currentItem.bonus_atk}}</li>
+          <li v-if="currentItem.bonus_hp">Bonus HP: +{{currentItem.bonus_hp}}</li>
+          <li v-if="currentItem.bonus_atk">Bonus Attack: +{{currentItem.bonus_atk}}</li>
+          <li v-if="currentItem.bonus_bleed">Shatterpoint Bleed: +{{currentItem.bonus_bleed}}</li>
         </ul>
       </div>
       <div v-else class="currentItem__container">
