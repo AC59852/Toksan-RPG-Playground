@@ -102,7 +102,7 @@ export default {
             },
         };
     },
-    mounted() {
+    created() {
         this.validateFight();
         this.enemy.name = this.enemyNames[Math.floor(Math.random() * this.enemyNames.length)].name;
         this.enemy.image = this.enemyImages[Math.floor(Math.random() * this.enemyImages.length)].image;
