@@ -41,13 +41,23 @@ router.beforeEach((to, from, next) => {
     // add the original route to the store
     store.commit('setOriginalRoute', to.name)
 
+    var images = [
+      '/img/boardwalk.jpg',
+      '/img/coffee_rain.jpg',
+      '/img/splashscreen.jpg',
+      '/img/street.jpg',
+    ]
+
+    // set the background image to a random image
+    store.commit('setBackgroundImage', images[Math.floor(Math.random() * images.length)])
+
+
     router.push('/battle').catch(() => {});
   }
 
   if (from.name) {
     document.querySelector(".overlay-black").classList.add("overlay-active")
     setTimeout(() => {
-      document.querySelector("body").style.backgroundImage = "none"
       next()
     }, 1600)
   } else {
@@ -58,6 +68,7 @@ router.beforeEach((to, from, next) => {
 // check when the route loads
 router.afterEach((from) => {
   store.commit('setLoadingMessage', from.name);
+
   if (from.name) {
     // set the state loading message to the route name
     setTimeout(() => {

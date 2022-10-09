@@ -9,6 +9,10 @@ body {
   opacity: 0;
 }
 
+.background__image {
+  background-image: url('../img/splashscreen.jpg');
+}
+
 #app {
   position: absolute;
   width: 100%;

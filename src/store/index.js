@@ -16,6 +16,7 @@ export default new Vuex.Store({
     currentStory: {},
     items: [],
     loadingMessage: null,
+    backgroundImage: null,
   },
   getters: {
   },
@@ -70,6 +71,10 @@ export default new Vuex.Store({
 
     setOriginalRoute(state, route) {
       state.originalRoute = route;
+    },
+
+    setBackgroundImage(state, image) {
+      state.backgroundImage = image;
     },
   },
   actions: {
