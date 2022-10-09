@@ -40,9 +40,12 @@
         } else {
           console.log("all out")
 
-          if(this.$store.state.user.saveData) {
-            console.log(this.$store.state.user.saveData.tutorial)
+          if(this.$store.state.user.saveData.tutorial !== true) {
+            // update the saveData.intro to be true
+            this.$store.state.user.saveData.tutorial = true;
+          }
 
+          if(this.$store.state.userID) {
             if(this.$store.state.user.saveData.tutorial !== true) {
               // update the saveData.tutorial to be true
               this.$store.state.user.saveData.tutorial = true;
