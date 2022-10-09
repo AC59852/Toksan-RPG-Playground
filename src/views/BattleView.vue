@@ -55,12 +55,6 @@ export default {
                 { id: 5, name: "Shinjiro Isa" },
                 { id: 6, name: "Kaoru Uematsu" },
             ],
-            backgroundImages: [
-                { id: 0, image: "/img/boardwalk.jpg" },
-                { id: 1, image: "/img/coffee_rain.jpg" },
-                { id: 2, image: "/img/splashscreen.jpg" },
-                { id: 3, image: "/img/street.jpg" },
-            ],
             enemy: {
                 HP: 100,
                 maxHP: 100,
@@ -106,7 +100,13 @@ export default {
         this.validateFight();
         this.enemy.name = this.enemyNames[Math.floor(Math.random() * this.enemyNames.length)].name;
         this.enemy.image = this.enemyImages[Math.floor(Math.random() * this.enemyImages.length)].image;
-        document.body.style.backgroundImage = `url(${this.backgroundImages[Math.floor(Math.random() * this.backgroundImages.length)].image})`;
+
+        // set the body background image to this.$store.state.backgroundImage
+        if(this.$store.state.backgroundImage !== null) {
+            document.body.style.backgroundImage = `url(${this.$store.state.backgroundImage})`;
+        } else {
+            document.body.classList.add('background__image');
+        }
     },
     // watch the enemy HP. if it reaches 0 or below, end the battle
     watch: {
