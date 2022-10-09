@@ -37,10 +37,15 @@
         // if there is content to load, shift
         if(this.story.length > 1) {
           this.story.shift();
-        } else {
+        } else if (this.story.length === 1) {
           console.log("all out")
 
-          if(this.$store.state.user.saveData) {
+          if(this.$store.state.user.saveData.intro !== true) {
+            // update the saveData.intro to be true
+            this.$store.state.user.saveData.intro = true;
+          }
+
+          if(this.$store.state.userID) {
             console.log(this.$store.state.user.saveData.intro)
 
             if(this.$store.state.user.saveData.intro !== true) {

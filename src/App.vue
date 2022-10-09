@@ -40,20 +40,26 @@ import MapComponent from './components/MapComponent.vue';
     },
 
     mounted() {
-      // get the items collection
-      db.collection('items')
-      .get()
-      .then(querySnapshot => {
-        // get the items from the query snapshot and give them an ID
-        const items = querySnapshot.docs.map(doc => ({ ...doc.data(), itemID: doc.id }))
+      // if localstorage has items array, load them
+      if(localStorage.getItem('items')) {
+        this.$store.commit('setItems', JSON.parse(localStorage.getItem('items')));
+      } else {
+        // get the items collection
+        db.collection('items')
+        .get()
+        .then(querySnapshot => {
+          // get the items from the query snapshot and give them an ID
+          const items = querySnapshot.docs.map(doc => ({ ...doc.data(), itemID: doc.id }))
 
-        console.log(items)
+          console.log(items)
 
-        // set the items array
-        this.$store.commit('setItems', items)
+          // set the items array
+          this.$store.commit('setItems', items)
 
-        console.log(this.$store.state.items)
-      })
+          // save the items array to localstorage
+          localStorage.setItem('items', JSON.stringify(items))
+        })
+      }
     },
 
     // watch the vuex store for changes

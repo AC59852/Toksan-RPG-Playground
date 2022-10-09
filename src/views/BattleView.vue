@@ -56,9 +56,9 @@ export default {
                 { id: 6, name: "Kaoru Uematsu" },
             ],
             backgroundImages: [
-                { id: 0, image: "https://firebasestorage.googleapis.com/v0/b/toksan-rpg.appspot.com/o/boardwalk.png?alt=media&token=9b1b9da4-cdb7-4af3-a382-e3444bf10f6c" },
-                { id: 1, image: "https://firebasestorage.googleapis.com/v0/b/toksan-rpg.appspot.com/o/splashscreen.png?alt=media&token=f1d37e64-779e-449b-a907-f70b5aee5a2a" },
-                { id: 2, image: "https://firebasestorage.googleapis.com/v0/b/toksan-rpg.appspot.com/o/coffee_rain.png?alt=media&token=300898d3-a4d3-4ef4-ac12-670317ab1086" },
+                { id: 0, image: "https://res.cloudinary.com/ap-creative/image/upload/v1665282570/toksan/boardwalk_um5e65.png" },
+                { id: 1, image: "https://res.cloudinary.com/ap-creative/image/upload/v1665282571/toksan/splashscreen_o0awrp.png" },
+                { id: 2, image: "https://res.cloudinary.com/ap-creative/image/upload/v1665282572/toksan/coffee_rain_fj9fok.png" },
                 { id: 3, image: "https://firebasestorage.googleapis.com/v0/b/toksan-rpg.appspot.com/o/street.jpg?alt=media&token=b04c6cfe-4b85-449b-9ffe-8dec2f35050a" },
             ],
             enemy: {
