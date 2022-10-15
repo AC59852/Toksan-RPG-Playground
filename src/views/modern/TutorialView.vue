@@ -20,6 +20,10 @@
   export default {
     mixins: [storyMixin, eventMixin],
 
+    metaInfo: {
+      title: 'Tutorial - Toksan'
+    },
+
     data() {
       return {
         content: [],

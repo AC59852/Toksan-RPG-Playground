@@ -38,6 +38,10 @@ import { VueRecaptcha } from 'vue-recaptcha'
 export default {
   name: 'RegisterView',
 
+  metaInfo: {
+    title: 'Register - Toksan'
+  },
+
   mixins: [userMixin],
 
   data() {

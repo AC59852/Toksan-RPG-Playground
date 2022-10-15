@@ -43,6 +43,10 @@ import TextComponent from '@/components/TextComponent.vue';
 export default {
   name: 'HouseView',
 
+  metaInfo: {
+    title: 'House - Toksan'
+  },
+
   mounted() {
     this.currentText = this.text[0].text
   },
