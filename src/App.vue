@@ -30,31 +30,7 @@
 import MapComponent from './components/MapComponent.vue';
 
   export default {
-    name: 'ToksanRPG',
-    metaInfo: {
-      title: 'Toksan',
-      meta: [
-        { name: 'description', content: `Toksan is a Visual Novel RPG set on the fanatasy Japanese island known as Toksan. Your goal is to investigate and take down a cult seeking to bring ancient Japanese Shinto deities into the world for their own gain.` },
-        { name: 'keywords', content: 'toksan, rpg, game, visual, novel, visual novel, japanese' },
-        // opengraph title, description, type, url, image
-        { property: 'og:title', content: 'Toksan' },
-        { property: 'og:description', content: `Toksan is a Visual Novel RPG set on the fanatasy Japanese island known as Toksan. Your goal is to investigate and take down a cult seeking to bring ancient Japanese Shinto deities into the world for their own gain.` },
-        { property: 'og:type', content: 'website' },
-        { property: 'og:url', content: 'https://www.toksan.ca/' },
-        { property: 'og:image', content: 'https://ac59852.github.io/toksan-anime/fb.png' },
-        // og:site_name
-        { property: 'og:site_name', content: 'Austin Caron' },
-        // og:image:alt
-        { property: 'og:image:alt', content: 'Toksan Game Logo' },
-        // twitter card
-        { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:site', content: 'https://www.toksan.ca' },
-        { name: 'twitter:creator', content: '@caron266' },
-        { name: 'twitter:title', content: 'Toksan' },
-        { name: 'twitter:description', content: `Toksan is a Visual Novel RPG set on the fanatasy Japanese island known as Toksan. Your goal is to investigate and take down a cult seeking to bring ancient Japanese Shinto deities into the world for their own gain.` },
-        { name: 'twitter:image', content: 'https://ac59852.github.io/toksan-anime/fb.png' },
-      ]
-    },
+    name: 'Toksan',
 
     data() {
       return {
