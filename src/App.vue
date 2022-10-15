@@ -30,7 +30,7 @@
 import MapComponent from './components/MapComponent.vue';
 
   export default {
-    name: 'Toksan',
+    name: 'Toksan App',
 
     data() {
       return {
