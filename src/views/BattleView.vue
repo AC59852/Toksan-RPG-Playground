@@ -35,6 +35,11 @@ import battleMixin from '@/mixins/battleMixin';
 import VictoryComponent from '@/components/VictoryComponent.vue';
 export default {
     mixins: [battleMixin],
+
+    metaInfo: {
+      title: 'Battle - Toksan'
+    },
+
     data() {
         return {
             battleText: "What will you do?",
