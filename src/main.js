@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import App from './App.vue'
-import Meta from 'vue-meta'
 import './registerServiceWorker'
 import router from './router'
 import { firestorePlugin } from 'vuefire'
@@ -18,8 +17,6 @@ library.add(fas)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
-
-Vue.use(Meta)
 Vue.use(firestorePlugin)
 
 Vue.config.productionTip = false
