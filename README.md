@@ -38,7 +38,7 @@ Here's a brief overview of the tech stack Toksan-Wiki uses:
 
 - This project uses the [Vue](https://vuejs.org/) JavaScript framework for all of the heavy lifting, this includes rendering all of the pages, dynamically loading content, conditionally rendering components, and more.
 - For content/data, the project uses [Google's cloud services of Firestore and Hosting](https://firebase.google.com/docs/firestore). The data is loaded using collections which the site uses within each component as needed. This does have its limits, as the potential amount of data will end up being quite large, and will consume a lot of reads quickly.
-- The site is hosted using [Vercel](https://vercel.com), taking deployments from the GitHub repository. The site is also using a custom .tech domain.
+- The site is hosted using [Vercel](https://vercel.com), taking deployments from the GitHub repository. The site is also using a custom .ca domain.
 - The web app uses the font [Heebo](https://fonts.google.com/specimen/Heebo) as the font-families for headings and paragraph text respectively.
 - On top of these tools, the site uses VueX for state management, Vite for bundling, Vue PWA for manifest settings, and is styled using CSS3.
 
