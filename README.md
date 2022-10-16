@@ -3,10 +3,13 @@
   <h1>Toksan - A Visual Novel RPG</h1>
 </div>
 
-## Project setup
-```
-npm install
-```
+<br />
+
+### Setup in 1 Easy Step 🥳 🚀
+
+- Just visit [The Toksan Website](https://www.toksan.ca/). That's it!
+
+---
 
 ### Compiles and hot-reloads for development
 ```
