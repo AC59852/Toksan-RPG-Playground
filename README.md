@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="/assets/toksan_logo-text.svg" />
+  <img src="src/assets/toksan_logo-text.svg" />
   <h1>Toksan - A Visual Novel RPG</h1>
 </div>
 
