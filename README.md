@@ -1,5 +1,7 @@
-![Toksan](src/assets/toksan_logo-text.svg)
-# Toksan - A Visual Novel RPG
+<div align="center">
+  ![Toksan](src/assets/toksan_logo-text.svg)
+  # Toksan - A Visual Novel RPG
+</div>
 
 ## Project setup
 ```
