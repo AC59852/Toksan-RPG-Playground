@@ -1,4 +1,5 @@
-# toksan-playground-v2
+![Toksan](src/assets/Toksan_Logo.svg)
+# Toksan - A Visual Novel RPG
 
 ## Project setup
 ```
