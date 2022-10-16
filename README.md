@@ -1,6 +1,6 @@
 <div align="center">
-  ![Toksan](src/assets/toksan_logo-text.svg)
-  # Toksan - A Visual Novel RPG
+  <img src="/assets/toksan_logo-text.svg" />
+  <h1>Toksan - A Visual Novel RPG</h1>
 </div>
 
 ## Project setup
