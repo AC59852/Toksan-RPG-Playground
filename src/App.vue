@@ -77,6 +77,7 @@ import MapComponent from './components/MapComponent.vue';
             document.querySelector(".save__popup").classList.remove("save__popup--active");
           }, 2000);
         },
+
         deep: true
       }
     },

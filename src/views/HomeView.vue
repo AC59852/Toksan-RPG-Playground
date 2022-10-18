@@ -84,6 +84,13 @@ export default {
     saveData() {
       // update the saveData on the account
       if(this.$store.state.userID !== null) {
+
+        document.querySelector(".save__popup").classList.add("save__popup--active");
+
+        setTimeout(() => {
+          document.querySelector(".save__popup").classList.remove("save__popup--active");
+        }, 2000);
+
         db.collection('users').doc(this.$store.state.userID).update({
         // all saveData
         "saveData": this.$store.state.user.saveData,
@@ -92,6 +99,14 @@ export default {
         // save currency
         "playerCurrency": this.$store.state.user.playerCurrency,
         })
+      } else {
+        document.querySelector(".save__popup h2").innerHTML = "You need to be logged in to save your progress.";
+
+        document.querySelector(".save__popup").classList.add("save__popup--active");
+
+        setTimeout(() => {
+          document.querySelector(".save__popup").classList.remove("save__popup--active");
+        }, 2000);
       }
     },
 
